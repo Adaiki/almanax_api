@@ -8,9 +8,9 @@ services:
     env_file:
       - prod.env
     ports:
-      - 3306:3306
+      - 3307:3307
     expose: 
-      - '3306'
+      - '3307'
     volumes:
       - ./mysql-dump:/docker-entrypoint-initdb.d
   api:
