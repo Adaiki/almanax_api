@@ -13,3 +13,20 @@ services:
       - '3306'
     volumes:
       - ./mysql-dump:/docker-entrypoint-initdb.d
+  api:
+    build: ./api/
+    volumes:
+      - ./api/:/usr/src/app/
+    ports:
+      - 5001:5001
+    env_file:
+      - prod.env
+    expose:
+      - '5001'
+    environment: 
+      PORT: 5001
+      FLASK_DEBUG: 1
+    depends_on:
+      - db
+    links:
+      - "db:database"
