@@ -1,32 +1,15 @@
 version: '3.9'
 
 services:
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    env_file:
-      - prod.env
-    ports:
-      - 3307:3307
-    expose: 
-      - '3307'
-    volumes:
-      - ./mysql-dump:/docker-entrypoint-initdb.d
   api:
+    container_name: almanax_api
     build: ./api/
     volumes:
       - ./api/:/usr/src/app/
     ports:
       - 5001:5001
-    env_file:
-      - prod.env
     expose:
       - '5001'
     environment: 
       PORT: 5001
       FLASK_DEBUG: 1
-    depends_on:
-      - db
-    links:
-      - "db:database"
