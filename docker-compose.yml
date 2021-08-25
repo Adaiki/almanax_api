@@ -13,3 +13,4 @@ services:
     environment: 
       PORT: 5001
       FLASK_DEBUG: 0
+    restart: always
